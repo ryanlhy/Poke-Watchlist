@@ -10,7 +10,7 @@ function Home() {
       <Navigation />
       <h1>Pokemon TCG Watchlist</h1>
       <Results />
-      {/* <SignUpForm /> */}
+      <SignUpForm />
 
       <Button>Danger!</Button>
     </div>

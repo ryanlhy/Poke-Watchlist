@@ -5,13 +5,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import redux
 import { createStore } from "redux";
 import { Provider } from "react-redux";
+import counterReducer from "./Components/reducers/counterReducers";
 
-const store = createStore();
+const store = createStore(counterReducer);
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Provider store={store}>
+        <Home />
+      </Provider>
     </div>
   );
 }
