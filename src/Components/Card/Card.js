@@ -14,14 +14,15 @@ function CardListing(props) {
           bulk of the card's content.
         </Card.Text>
         <Button variant="primary" onClick={props.handleIncrement}>
-          Increase
+          +
         </Button>
         <Button variant="primary" onClick={props.handleDecrement}>
-          Decrease
+          -
         </Button>
         <Button variant="primary" onClick={props.handleReset}>
-          Reset
+          Delete
         </Button>
+        <Card.Text>Qty: {props.count}</Card.Text>
       </Card.Body>
     </Card>
   );
