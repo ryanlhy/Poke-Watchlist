@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import React from "react";
 
 import Results from "./Results";
+import ApiPokemon from "../ApiPokemon";
 
 function Home() {
   return (
@@ -12,7 +13,7 @@ function Home() {
       <h1>Pokemon TCG Watchlist</h1>
       <Results />
       {/* <SignUpForm /> */}
-
+      <ApiPokemon />
       <Button>Danger!</Button>
     </div>
   );
