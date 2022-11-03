@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import React from "react";
 import { connect } from "react-redux";
+// useselector gets a small slice of the state object
 
 function CardListing(props) {
   return (
@@ -38,8 +39,8 @@ const mapStateToProps = (state) => {
 // step 2; define a mapDispatchToProps function
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleIncrement: () => dispatch({ type: "INCREMENT" }),
-    handleDecrement: () => dispatch({ type: "DECREMENT" }),
+    handleIncrement: () => dispatch({ type: "INCREMENT", amount: 1 }),
+    handleDecrement: () => dispatch({ type: "DECREMENT", amount: 1 }),
     handleReset: () => dispatch({ type: "RESET", value: 0 }),
   };
 };

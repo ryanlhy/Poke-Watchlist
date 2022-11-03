@@ -1,28 +1,44 @@
 import React from "react";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
 
-function ApiPokemon() {
-  const [gifSrc, setGifSrc] = useState("");
-  const key = "OkvabOBh3AH2TdF89yjYbO2ajlTfK3zk";
-  const APICall = async () => {
-    const gifSrc = `https://api.giphy.com/v1/gifs/random?api_key=${key}`;
-    const res = await fetch(gifSrc);
-    const json = await res.json();
-    console.log("makeApiCall", json.data);
-    setGifSrc(json.data.images.downsized_large.url);
-  };
-
-  useEffect(() => {
-    APICall();
-  }, []);
-
+function ApiPokemon(props) {
   return (
     <div>
-      <Button onClick={APICall}>API Call</Button>
-      <img src={gifSrc} alt="" />
+      <Button onClick={props.APICallclicked}>API Call</Button>
+      <img src={props.img} alt="" />
     </div>
   );
 }
 
-export default ApiPokemon;
+const apiLogic = () => {
+  return async (dispatch) => {
+    const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
+    const urlSrc = `https://api.pokemontcg.io/v2/cards/xy1-1?api_key=${key}`;
+
+    const res = await fetch(urlSrc);
+    const json = await res.json();
+
+    dispatch({ type: "CARDS", url: json.data.images.small });
+  };
+};
+
+//////////////////////////////////////////////////////////////
+// step 1: define a mapStateToProps function
+const mapStateToProps = (state) => {
+  return {
+    // img: state.img,
+    img: state.img,
+  };
+};
+
+// step 2; define a mapDispatchToProps function
+const mapDispatchToProps = (dispatch) => {
+  return {
+    APICallclicked: () => dispatch(apiLogic()),
+  };
+};
+
+// step 3: connect the above two functions to redux
+export default connect(mapStateToProps, mapDispatchToProps)(ApiPokemon);
