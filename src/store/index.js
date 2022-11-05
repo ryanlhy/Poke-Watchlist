@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const initialState = { count: 0, img: "" }; //multiplecards here
+const initialState = { count: 0, img: "", watchList: [] }; //multiplecards here
 
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,15 +9,15 @@ const counterReducer = (state = initialState, action) => {
       // logics
       console.log(state);
       return {
+        ...state,
         count: state.count + action.amount,
-        img: state.img,
       };
 
     case "DECREMENT":
       console.log(state);
       return {
+        ...state,
         count: state.count - action.amount,
-        img: state.img,
       };
 
     case "RESET":
@@ -25,9 +25,10 @@ const counterReducer = (state = initialState, action) => {
       // localStorage.clear();
       console.log(action);
       return {
+        ...state,
         count: action.value,
-        img: state.img,
       };
+
     case "CARDS":
       console.log("ran pokemon api");
       console.log(state);
@@ -35,6 +36,15 @@ const counterReducer = (state = initialState, action) => {
       return {
         count: state.count,
         img: action.url,
+        watchList: state.watchList,
+      };
+    case "WATCHLIST":
+      console.log(action);
+      let key = action.value;
+      console.log(key);
+      return {
+        ...state,
+        watchList: [...state.watchList, action.value],
       };
     default:
       // return {

@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 
 function Results() {
+  const convertSgd = 1.41;
+
   console.log("results component run");
   const [pokemonArray, setPokemonArray] = useState([]);
   const testArray = [1, 2, 3, 4, 5, 6, 7];
@@ -59,12 +61,16 @@ function Results() {
           {pokemonArray.map((arr, i) => {
             return (
               <CardListing
+                propsObj={arr}
                 name={arr.name}
                 image={arr.images.small}
                 number={arr.number}
                 printedTotal={arr.set.printedTotal}
                 setName={arr.set.name}
-                prices={arr.cardmarket.prices.avg30}
+                pricesSgd={Math.round(
+                  parseInt(arr.cardmarket.prices.avg30) * convertSgd
+                )}
+                qty={0}
                 key={i}
               />
             );
