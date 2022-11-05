@@ -55,17 +55,12 @@ const counterReducer = (state = initialState, action) => {
         ],
       };
     case "SEARCH":
-      console.log(action);
+      // console.log(action.value);
       return {
         ...state,
         search: action.value,
       };
     default:
-      // return {
-      //   count: state.count,
-      //   // img: "",
-      //   // count: parseInt(localStorage.getItem("count")),
-      // };
       return state;
   }
 };
