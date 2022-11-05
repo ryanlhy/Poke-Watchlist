@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 
-function Results() {
+function Results(props) {
   const convertSgd = 1.41;
 
   // console.log("results component run");
@@ -38,14 +38,11 @@ function Results() {
       .then((response) => response.json())
       .then((data) => {
         setPokeSearch(data.data);
+        props.handleSearchPoke(data.data);
       });
   };
 
   useEffect(() => {
-    // const asyncFunction = async () => {
-    //   callTenCharizard();
-    // };
-    // asyncFunction();
     callTenCharizard();
   }, []);
 
@@ -71,7 +68,6 @@ function Results() {
                 pricesSgd={Math.round(
                   parseInt(arr.cardmarket.prices.avg30) * convertSgd
                 )}
-                qty={0}
                 key={i}
               />
             );
@@ -92,7 +88,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChange: (val) => dispatch({ type: "SEARCH/RESULTS", value: val }),
+    handleSearchPoke: (searchArr) =>
+      dispatch({ type: "SEARCH/RESULTS", value: searchArr }),
   };
 };
 

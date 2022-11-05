@@ -20,6 +20,9 @@ function Navigation(props) {
             <Link to="/watchlist">
               <Nav>watch List Link {props.watchList.length}</Nav>
             </Link>
+            <Link to="/search">
+              <Nav>Search</Nav>
+            </Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

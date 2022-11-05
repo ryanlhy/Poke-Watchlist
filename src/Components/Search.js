@@ -5,9 +5,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import React from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Search(props) {
   console.log(props.search);
+  console.log(props.searchResults);
+
+  props.searchResults.map((arr, i) => {
+    return <div></div>;
+  });
+
   return (
     <Form className="d-flex">
       <Form.Control
@@ -17,13 +24,16 @@ function Search(props) {
         aria-label="Search"
         onChange={(e) => props.handleChange(e)}
       />
-      <Button variant="outline-success">Search</Button>
+      <Link to="/search">
+        <Button variant="outline-success">Search</Button>
+      </Link>
     </Form>
   );
 }
 const mapStateToProps = (state) => {
   return {
     search: state.search,
+    searchResults: state.searchResults,
   };
 };
 

@@ -13,6 +13,7 @@ import { Route, Switch } from "react-router-dom";
 // import
 
 import Navigation from "./Components/Navigation";
+import SearchPage from "./Components/SearchPage";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route exact path="/watchlist">
           <WatchList />
+        </Route>
+        <Route exact path="/search">
+          <SearchPage />
         </Route>
       </Switch>
     </div>
