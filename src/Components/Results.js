@@ -3,15 +3,20 @@ import React from "react";
 import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
+import { connect } from "react-redux";
 
 function Results() {
   const convertSgd = 1.41;
 
   // console.log("results component run");
   const [pokemonArray, setPokemonArray] = useState([]);
-  const testArray = [1, 2, 3, 4, 5, 6, 7];
+  const [pokeSearch, setPokeSearch] = useState("");
+
+  const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
+  // const pageSize = 10;
+  // let pokeName = "charizard";
+
   const callTenCharizard = async () => {
-    const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
     const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:charizard&pageSize=10&api_key=${key}`;
     // const res = await fetch(urlSrc);
     // const json = await res.json();
@@ -22,17 +27,30 @@ function Results() {
     fetchPromise
       .then((response) => response.json())
       .then((data) => {
-        // console.log("data");
-        // console.log(data.data);
         setPokemonArray(data.data);
       });
   };
+
+  const callApiSearch = async () => {
+    const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${pokeSearch}&pageSize=10&api_key=${key}`;
+    const fetchPromise = fetch(urlSrc);
+    fetchPromise
+      .then((response) => response.json())
+      .then((data) => {
+        setPokeSearch(data.data);
+      });
+  };
+
   useEffect(() => {
     // const asyncFunction = async () => {
     //   callTenCharizard();
     // };
     // asyncFunction();
     callTenCharizard();
+  }, []);
+
+  useEffect(() => {
+    // callApiSearch();
   }, []);
 
   return (
@@ -65,4 +83,17 @@ function Results() {
     </div>
   );
 }
-export default Results;
+
+const mapStateToProps = (state) => {
+  return {
+    searchResults: state.searchResults,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleChange: (val) => dispatch({ type: "SEARCH/RESULTS", value: val }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

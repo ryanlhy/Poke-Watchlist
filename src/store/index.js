@@ -1,7 +1,13 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const initialState = { count: 0, img: "", watchList: [], search: "" }; //multiplecards here
+const initialState = {
+  count: 0,
+  img: "",
+  watchList: [],
+  search: "",
+  searchResults: [],
+}; //multiplecards here
 
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -59,6 +65,12 @@ const counterReducer = (state = initialState, action) => {
       return {
         ...state,
         search: action.value,
+      };
+    case "SEARCH/RESULTS":
+      // console.log(action.value);
+      return {
+        ...state,
+        searchResults: action.value,
       };
     default:
       return state;
