@@ -3,6 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 function Navigation() {
   return (
@@ -14,6 +16,10 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
+            <Nav.Link href="/watchlist">Watch List</Nav.Link>
+            <Link to="/watchlist">
+              <Nav>watch List Link</Nav>
+            </Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -32,7 +38,19 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    watchList: state.watchList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // no dispatch needed
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
 
 // import Container from "react-bootstrap/Container";
 

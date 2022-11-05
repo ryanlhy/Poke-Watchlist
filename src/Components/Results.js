@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 function Results() {
   const convertSgd = 1.41;
 
-  console.log("results component run");
+  // console.log("results component run");
   const [pokemonArray, setPokemonArray] = useState([]);
   const testArray = [1, 2, 3, 4, 5, 6, 7];
   const callTenCharizard = async () => {
@@ -22,8 +22,8 @@ function Results() {
     fetchPromise
       .then((response) => response.json())
       .then((data) => {
-        console.log("data");
-        console.log(data.data);
+        // console.log("data");
+        // console.log(data.data);
         setPokemonArray(data.data);
       });
   };

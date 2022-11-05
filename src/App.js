@@ -5,7 +5,7 @@ import React from "react";
 
 //import components
 import SignUpForm from "./Components/SignUpForm";
-import WatchList from "./Components/Watchlist";
+import WatchList from "./Components/WatchList";
 
 //import Route
 import { Route, Switch } from "react-router-dom";

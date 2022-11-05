@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col";
 // useselector gets a small slice of the state object
 function CardListing(props) {
   const { name } = props;
-  console.log(props.propsObj);
+  // console.log(props.propsObj);
   // not sure how to pass data from state to another component
   // const image = useSelector((state) => state.img);
   const convertSgd = 1.41; // can use an api
@@ -54,7 +54,9 @@ function CardListing(props) {
 
 // step 1: define a mapStateToProps function
 const mapStateToProps = (state) => {
+  // ownprops can pass in props in component - optional
   return {
+    // select part of the data needed from store in this component
     count: state.count,
   };
 };
@@ -67,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
     handleIncrement: () => dispatch({ type: "INCREMENT", amount: 1 }),
     handleDecrement: () => dispatch({ type: "DECREMENT", amount: 1 }),
     handleReset: () => dispatch({ type: "RESET", value: 0 }),
-    handleWatchlist: (name) => dispatch({ type: "WATCHLIST", value: name }),
+    handleWatchlist: (val) => dispatch({ type: "WATCHLIST", value: val }),
   };
 };
 

@@ -40,11 +40,23 @@ const counterReducer = (state = initialState, action) => {
       };
     case "WATCHLIST":
       console.log(action);
-      let key = action.value;
-      console.log(key);
       return {
         ...state,
         watchList: [...state.watchList, action.value],
+      };
+    // delete item
+    case "WATCHLIST/REMOVE":
+      console.log(action.value);
+      console.log(state.watchList);
+      const newWatchlist = state.watchList.slice(action.value, 0);
+      console.log(newWatchlist);
+      // used slice instead as splice mutates state object
+      return {
+        ...state,
+        watchList: [
+          ...state.watchList.slice(0, action.value),
+          ...state.watchList.slice(action.value + 1),
+        ],
       };
     default:
       // return {
