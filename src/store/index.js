@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const initialState = { count: 0, img: "", watchList: [] }; //multiplecards here
+const initialState = { count: 0, img: "", watchList: [], search: "" }; //multiplecards here
 
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -46,10 +46,6 @@ const counterReducer = (state = initialState, action) => {
       };
     // delete item
     case "WATCHLIST/REMOVE":
-      console.log(action.value);
-      console.log(state.watchList);
-      const newWatchlist = state.watchList.slice(action.value, 0);
-      console.log(newWatchlist);
       // used slice instead as splice mutates state object
       return {
         ...state,
@@ -57,6 +53,12 @@ const counterReducer = (state = initialState, action) => {
           ...state.watchList.slice(0, action.value),
           ...state.watchList.slice(action.value + 1),
         ],
+      };
+    case "SEARCH":
+      console.log(action);
+      return {
+        ...state,
+        search: action.value,
       };
     default:
       // return {
