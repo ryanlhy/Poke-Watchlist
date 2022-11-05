@@ -1,31 +1,45 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 // useselector gets a small slice of the state object
 
 function CardListing(props) {
+  // not sure how to pass data from state to another component
+  // const image = useSelector((state) => state.img);
+  const convertSgd = 1.41; // can use an api
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary" onClick={props.handleIncrement}>
-          +
-        </Button>
-        <Button variant="primary" onClick={props.handleDecrement}>
-          -
-        </Button>
-        <Button variant="primary" onClick={props.handleReset}>
-          Delete
-        </Button>
-        <Card.Text>Qty: {props.count}</Card.Text>
-      </Card.Body>
-    </Card>
+    <Col lg={true}>
+      <Card className="flex-fill" border="primary" style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={props.image} />
+        <Card.Body>
+          <Card.Title>{props.name}</Card.Title>
+          <Card.Text>
+            {props.name} {props.setName} {props.number}/{props.printedTotal}
+          </Card.Text>
+          <Card.Title>
+            SGD ${Math.round(parseInt(props.prices) * convertSgd)}
+          </Card.Title>
+          <Button variant="primary" onClick={props.handleIncrement}>
+            +
+          </Button>
+          <Button variant="primary" onClick={props.handleDecrement}>
+            -
+          </Button>
+          <Button variant="primary" onClick={props.handleReset}>
+            Delete
+          </Button>
+          <Card.Text>Qty: {props.count}</Card.Text>
+          <Button variant="primary" onClick={props.handleReset}>
+            Add to Watchlist
+          </Button>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 }
 

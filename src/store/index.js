@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-const initialState = { count: 0, img: "" };
+const initialState = { count: 0, img: "" }; //multiplecards here
 
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
