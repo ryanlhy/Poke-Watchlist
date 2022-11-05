@@ -28,33 +28,16 @@ function Results() {
       });
   };
   useEffect(() => {
-    const asyncFunction = async () => {
-      callTenCharizard();
-    };
-    asyncFunction();
+    // const asyncFunction = async () => {
+    //   callTenCharizard();
+    // };
+    // asyncFunction();
+    callTenCharizard();
   }, []);
-
-  // const mapPokemonArr = () => {
-  //   pokemonArray.map((arr, i) => {
-  //     console.log("mappppp");
-  //     return (
-  //       <CardListing
-  //         name={arr.name}
-  //         image={arr.images.small}
-  //         number={arr.number}
-  //         printedTotal={arr.set.printedTotal}
-  //         setName={arr.set.name}
-  //         prices={arr.cardmarket.prices.avg30}
-  //         key={i}
-  //       />
-  //     );
-  //   });
-  // };
 
   return (
     <div>
       results page
-      {/* <div>{generateCards}</div> */}
       {pokemonArray !== [] ? (
         // mapPokemonArr()
         <Container>
