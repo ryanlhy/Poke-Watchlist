@@ -6,7 +6,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-function Navigation() {
+function Navigation(props) {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -18,7 +18,7 @@ function Navigation() {
             <Nav.Link href="/signup">Sign Up</Nav.Link>
             <Nav.Link href="/watchlist">Watch List</Nav.Link>
             <Link to="/watchlist">
-              <Nav>watch List Link</Nav>
+              <Nav>watch List Link {props.watchList.length}</Nav>
             </Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
