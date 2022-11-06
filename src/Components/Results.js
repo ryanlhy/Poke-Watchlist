@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 
 function Results(props) {
   const convertSgd = 1.41;
-
-  // console.log("results component run");
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [pokeSearch, setPokeSearch] = useState("");
 
   const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
   // const pageSize = 10;
@@ -32,19 +29,27 @@ function Results(props) {
   };
 
   const callApiSearch = async () => {
-    const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${pokeSearch}&pageSize=10&api_key=${key}`;
-    const fetchPromise = fetch(urlSrc);
-    fetchPromise
-      .then((response) => response.json())
-      .then((data) => {
-        setPokeSearch(data.data);
-        props.handleSearchPoke(data.data);
-      });
+    if (props.search === "") {
+      console.log("did not call api");
+    } else {
+      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=10&api_key=${key}`;
+      const fetchPromise = fetch(urlSrc);
+      fetchPromise
+        .then((response) => response.json())
+        .then((data) => {
+          setPokemonArray(data.data);
+        });
+    }
+    // if dont return any pokemon, enter set name?
   };
 
   useEffect(() => {
-    callTenCharizard();
-  }, []);
+    if (props.search === "") {
+      callTenCharizard();
+    } else {
+      callApiSearch();
+    }
+  }, [props.search]);
 
   useEffect(() => {
     // callApiSearch();
@@ -82,7 +87,8 @@ function Results(props) {
 
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.searchResults,
+    search: state.search,
+    searchResults: state.searchResults, // not needed anymore?
   };
 };
 

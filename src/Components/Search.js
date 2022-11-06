@@ -2,19 +2,19 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Search(props) {
   console.log(props.search);
-  console.log(props.searchResults);
+  // console.log(props.searchResults);
 
-  props.searchResults.map((arr, i) => {
-    return <div></div>;
-  });
-
+  // props.searchResults.map((arr, i) => {
+  //   return <div></div>;
+  // });
+  useEffect(() => {});
   return (
     <Form className="d-flex">
       <Form.Control
