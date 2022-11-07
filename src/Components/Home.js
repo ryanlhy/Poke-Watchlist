@@ -8,6 +8,7 @@ import Results from "./Results";
 import ApiPokemon from "../ApiPokemon";
 import Search from "./Search";
 import { Container } from "react-bootstrap";
+import Footer from "./Footer";
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
       <Results />
       {/* <SignUpForm /> */}
       {/* <ApiPokemon /> */}
+      <Footer />
     </div>
   );
 }
