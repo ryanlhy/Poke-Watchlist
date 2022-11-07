@@ -4,7 +4,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 function WatchListCards(props) {
-  console.log(props.watchList);
   return (
     <div className="rowC">
       {props.watchList.map((arr, i) => {

@@ -4,22 +4,27 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import WatchListCards from "./WatchListCards";
+import { Container } from "react-bootstrap";
 
 function WatchList(props) {
-  // function here
-  console.log(props);
   return (
-    // stuff here
     <div>
       <h1>Your Watch List</h1>
-      <WatchListCards />
-      {props.watchList.length === 0 ? (
-        <h2>Nothing Here Yet</h2>
-      ) : (
-        <Link to="/">
-          <Button variant="primary">Submit</Button>
-        </Link>
-      )}
+      <Container>
+        <WatchListCards />
+        {props.watchList.length === 0 ? (
+          <h2>Nothing Here Yet</h2>
+        ) : (
+          <div>
+            <Link to="/">
+              <Button variant="primary">Submit</Button>
+            </Link>{" "}
+            <Link to="/">
+              <Button variant="primary">Continue Browsing</Button>
+            </Link>
+          </div>
+        )}
+      </Container>
     </div>
   );
 }
