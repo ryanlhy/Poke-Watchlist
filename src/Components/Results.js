@@ -77,6 +77,7 @@ function Results(props) {
           );
         })}
       </div>
+      <h1>Load more...button here</h1>
     </Container>
   );
 }

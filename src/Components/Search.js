@@ -2,18 +2,21 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Search(props) {
-  useEffect(() => {});
+  const [placeholderSearch, setPlaceholderSearch] = useState("Enter a Pokemon");
+  useEffect(() => {
+    setPlaceholderSearch(props.search);
+  }, [props.search]);
   return (
     <Form className="d-flex">
       <Form.Control
         type="search"
-        placeholder="Enter a Pokemon"
+        placeholder={placeholderSearch}
         className="me-2"
         aria-label="Search"
         onChange={(e) => props.handleChange(e)}

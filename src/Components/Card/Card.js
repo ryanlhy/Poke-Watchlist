@@ -44,7 +44,7 @@ function CardListing(props) {
         </Button>
       ) : (
         <Button
-          variant="primary"
+          variant="secondary"
           // handleDelete takes in an index
           onClick={() => {
             props.handleDelete(
