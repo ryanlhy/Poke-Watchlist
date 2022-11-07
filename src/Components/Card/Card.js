@@ -18,7 +18,13 @@ function CardListing(props) {
   const convertSgd = 1.41; // can use an api
   return (
     <Card className="flex-fill" border="primary" style={{ width: "14rem" }}>
-      <Card.Img variant="top" src={props.image} />
+      <div className="card-effects">
+        <Card.Img
+          className="card-img-effects"
+          variant="top"
+          src={props.image}
+        />
+      </div>
       <Card.Body>
         <Card.Title>
           {props.name} {props.setName} {props.number}/{props.printedTotal}
