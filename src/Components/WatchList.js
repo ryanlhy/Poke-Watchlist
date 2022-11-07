@@ -13,9 +13,13 @@ function WatchList(props) {
     <div>
       <h1>Your Watch List</h1>
       <WatchListCards />
-      <Link to="/">
-        <Button variant="primary">Submit</Button>
-      </Link>
+      {props.watchList.length === 0 ? (
+        <h2>Nothing Here Yet</h2>
+      ) : (
+        <Link to="/">
+          <Button variant="primary">Submit</Button>
+        </Link>
+      )}
     </div>
   );
 }

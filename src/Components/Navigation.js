@@ -14,16 +14,21 @@ function Navigation(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link as={Link} to={"/"}>
+              Home
+            </Nav.Link>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
-            <Nav.Link href="/watchlist">Watch List</Nav.Link>
-            <Link to="/watchlist">
-              <Nav>watch List Link {props.watchList.length}</Nav>
-            </Link>
-            <Link to="/search">
+            <Nav.Link as={Link} to={"/search"}>
               <Nav>Search</Nav>
-            </Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to={"/watchlist"}
+              class="row justify-content-end"
+            >
+              Watch List ({props.watchList.length})
+            </Nav.Link>
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -33,7 +38,7 @@ function Navigation(props) {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
