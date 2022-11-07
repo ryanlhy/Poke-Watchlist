@@ -8,12 +8,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Search(props) {
-  console.log(props.search);
-  // console.log(props.searchResults);
-
-  // props.searchResults.map((arr, i) => {
-  //   return <div></div>;
-  // });
   useEffect(() => {});
   return (
     <Form className="d-flex">

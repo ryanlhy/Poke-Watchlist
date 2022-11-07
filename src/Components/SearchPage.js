@@ -3,38 +3,40 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import CardListing from "./Card/Card";
+import Results from "./Results";
 import Search from "./Search";
 
 function SearchPage(props) {
   const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
 
   const convertSgd = 1.41;
-  console.log(props.searchResults);
+  // console.log(props.searchResults);
 
-  const [pokeSearch, setPokeSearch] = useState("");
+  // const [pokeSearch, setPokeSearch] = useState("");
 
-  const callApiSearch = async () => {
-    setPokeSearch(props.search);
-    // const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${pokeSearch}&pageSize=10&api_key=${key}`;
-    const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:charizard&pageSize=10&api_key=${key}`;
+  // const callApiSearch = async () => {
+  //   setPokeSearch(props.search);
+  //   // const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${pokeSearch}&pageSize=10&api_key=${key}`;
+  //   const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:charizard&pageSize=10&api_key=${key}`;
 
-    const fetchPromise = fetch(urlSrc);
-    fetchPromise
-      .then((response) => response.json())
-      .then((data) => {
-        setPokeSearch(data.data);
-      });
-  };
+  //   const fetchPromise = fetch(urlSrc);
+  //   fetchPromise
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setPokeSearch(data.data);
+  //     });
+  // };
 
-  useEffect(() => {
-    callApiSearch();
-  }, []);
+  // useEffect(() => {
+  //   callApiSearch();
+  // }, []);
 
   return (
     <div>
       <h1>Search Page</h1>
       <Search />
-      {pokeSearch !== "" ? (
+      <Results />
+      {/* {pokeSearch !== "" ? (
         <Container>
           {props.searchResults.map((arr, i) => {
             return (
@@ -55,7 +57,7 @@ function SearchPage(props) {
         </Container>
       ) : (
         <h1>no results</h1>
-      )}
+      )} */}
     </div>
   );
 }

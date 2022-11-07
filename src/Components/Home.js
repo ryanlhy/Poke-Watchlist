@@ -7,12 +7,16 @@ import React from "react";
 import Results from "./Results";
 import ApiPokemon from "../ApiPokemon";
 import Search from "./Search";
+import { Container } from "react-bootstrap";
 
 function Home() {
   return (
     <div>
       <h1>Pokemon TCG Watchlist</h1>
-      <Search />
+      <Container>
+        <Search />
+      </Container>
+
       <Results />
       {/* <SignUpForm /> */}
       <ApiPokemon />

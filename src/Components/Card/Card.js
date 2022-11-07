@@ -5,6 +5,7 @@ import { connect, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Stack from "react-bootstrap/Stack";
 
 // useselector gets a small slice of the state object
 function CardListing(props) {
@@ -14,41 +15,32 @@ function CardListing(props) {
   // const image = useSelector((state) => state.img);
   const convertSgd = 1.41; // can use an api
   return (
-    <Col lg={true}>
-      <Card className="flex-fill" border="primary" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={props.image} />
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            {props.name} {props.setName} {props.number}/{props.printedTotal}
-          </Card.Text>
-          <Card.Title>
-            {/* SGD ${Math.round(parseInt(props.prices) * convertSgd)} */}
-            SGD ${props.pricesSgd}
-          </Card.Title>
-          <Button variant="primary" onClick={props.handleIncrement}>
-            +
-          </Button>
-          <Button variant="primary" onClick={props.handleDecrement}>
-            -
-          </Button>
-          <Button variant="primary" onClick={props.handleReset}>
-            Delete
-          </Button>
-          <Card.Text>Qty: {props.count}</Card.Text>
-          <Card.Text>Watchlist: {props.watchList}</Card.Text>
+    <Card className="flex-fill" border="primary" style={{ width: "18rem" }}>
+      <Card.Img variant="top" src={props.image} />
+      <Card.Body>
+        <Card.Title>
+          {props.name} {props.setName} {props.number}/{props.printedTotal}
+        </Card.Title>
+        <Card.Text></Card.Text>
+        <Card.Title>
+          {/* SGD ${Math.round(parseInt(props.prices) * convertSgd)} */}
+          SGD ${props.pricesSgd}
+        </Card.Title>
 
-          <Button
-            variant="primary"
-            onClick={() => {
-              props.handleWatchlist(props);
-            }}
-          >
-            Add to Watchlist
-          </Button>
-        </Card.Body>
-      </Card>
-    </Col>
+        <Button
+          variant="primary"
+          onClick={() => {
+            props.handleWatchlist(props);
+          }}
+        >
+          Add to Watchlist
+        </Button>
+        <Button variant="primary" onClick={props.handleReset}>
+          Remove
+        </Button>
+        <Card.Text>Qty: {props.count}</Card.Text>
+      </Card.Body>
+    </Card>
   );
 }
 

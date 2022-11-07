@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Stack from "react-bootstrap/Stack";
 
 function Results(props) {
   const convertSgd = 1.41;
@@ -30,7 +33,7 @@ function Results(props) {
 
   const callApiSearch = async () => {
     if (props.search === "") {
-      console.log("did not call api");
+      console.log("did not call api from search");
     } else {
       const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=10&api_key=${key}`;
       const fetchPromise = fetch(urlSrc);
@@ -44,44 +47,38 @@ function Results(props) {
   };
 
   useEffect(() => {
-    if (props.search === "") {
-      callTenCharizard();
-    } else {
-      callApiSearch();
+    // check if empty array, dont procees with useEffect
+    if (pokemonArray !== []) {
+      if (props.search === "") {
+        callTenCharizard();
+      } else {
+        callApiSearch();
+      }
     }
   }, [props.search]);
 
-  useEffect(() => {
-    // callApiSearch();
-  }, []);
-
   return (
-    <div>
-      results page
-      {pokemonArray !== [] ? (
-        // mapPokemonArr()
-        <Container>
-          {pokemonArray.map((arr, i) => {
-            return (
-              <CardListing
-                propsObj={arr}
-                name={arr.name}
-                image={arr.images.small}
-                number={arr.number}
-                printedTotal={arr.set.printedTotal}
-                setName={arr.set.name}
-                pricesSgd={Math.round(
-                  parseInt(arr.cardmarket.prices.avg30) * convertSgd
-                )}
-                key={i}
-              />
-            );
-          })}
-        </Container>
-      ) : (
-        <h1>Loading Results...</h1>
-      )}
-    </div>
+    <Container>
+      <div className="rowC">
+        {pokemonArray.map((arr, i) => {
+          return (
+            <CardListing
+              propsObj={arr}
+              name={arr.name}
+              image={arr.images.small}
+              number={arr.number}
+              printedTotal={arr.set.printedTotal}
+              setName={arr.set.name}
+              pricesSgd={Math.round(
+                parseInt(arr.cardmarket.prices.avg30) * convertSgd
+              )}
+              key={i}
+            />
+          );
+        })}
+        {/* </Col> */}
+      </div>
+    </Container>
   );
 }
 

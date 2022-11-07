@@ -4,8 +4,10 @@ import React from "react";
 import { connect } from "react-redux";
 
 function WatchListCards(props) {
+  console.log(props.watchList);
   return (
     <div>
+      {props.watchList.length === 0 ? <h2>Nothing Here Yet</h2> : <div />}
       {props.watchList.map((arr, i) => {
         return (
           <Card key={i} style={{ width: "18rem" }}>
