@@ -10,12 +10,14 @@ import Stack from "react-bootstrap/Stack";
 // useselector gets a small slice of the state object
 function CardListing(props) {
   const { name } = props;
+  const [toggleButtonAdd, setToggleButtonAdd] = useState(false);
+
   // console.log(props.propsObj);
   // not sure how to pass data from state to another component
   // const image = useSelector((state) => state.img);
   const convertSgd = 1.41; // can use an api
   return (
-    <Card className="flex-fill" border="primary" style={{ width: "18rem" }}>
+    <Card className="flex-fill" border="primary" style={{ width: "14rem" }}>
       <Card.Img variant="top" src={props.image} />
       <Card.Body>
         <Card.Title>
@@ -27,19 +29,37 @@ function CardListing(props) {
           SGD ${props.pricesSgd}
         </Card.Title>
 
+        <Card.Text></Card.Text>
+      </Card.Body>
+      {toggleButtonAdd === false ? (
         <Button
           variant="primary"
           onClick={() => {
             props.handleWatchlist(props);
+            setToggleButtonAdd(true);
+            console.log(props.watchList);
           }}
         >
-          Add to Watchlist
+          Add
         </Button>
-        <Button variant="primary" onClick={props.handleReset}>
-          Remove
+      ) : (
+        <Button
+          variant="primary"
+          // handleDelete takes in an index
+          onClick={() => {
+            props.handleDelete(
+              props.watchList.findIndex((watchList) => {
+                // find by id of the card
+                return watchList.propsObj.id === props.propsObj.id;
+              })
+            );
+            setToggleButtonAdd(false);
+            console.log(props.watchList);
+          }}
+        >
+          Added
         </Button>
-        <Card.Text>Qty: {props.count}</Card.Text>
-      </Card.Body>
+      )}
     </Card>
   );
 }
@@ -50,18 +70,19 @@ const mapStateToProps = (state) => {
   return {
     // select part of the data needed from store in this component
     count: state.count,
+    watchList: state.watchList,
   };
 };
 
 // step 2; define a mapDispatchToProps function
 const mapDispatchToProps = (dispatch) => {
-  // console.log("objfromprops");
-  // console.log(objFromProps);
   return {
-    handleIncrement: () => dispatch({ type: "INCREMENT", amount: 1 }),
-    handleDecrement: () => dispatch({ type: "DECREMENT", amount: 1 }),
-    handleReset: () => dispatch({ type: "RESET", value: 0 }),
+    // handleIncrement: () => dispatch({ type: "INCREMENT", amount: 1 }),
+    // handleDecrement: () => dispatch({ type: "DECREMENT", amount: 1 }),
+    // handleReset: () => dispatch({ type: "RESET", value: 0 }),
     handleWatchlist: (val) => dispatch({ type: "WATCHLIST", value: val }),
+    handleDelete: (index) =>
+      dispatch({ type: "WATCHLIST/REMOVE", value: index }),
   };
 };
 

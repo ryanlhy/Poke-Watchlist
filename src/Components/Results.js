@@ -76,7 +76,6 @@ function Results(props) {
             />
           );
         })}
-        {/* </Col> */}
       </div>
     </Container>
   );
