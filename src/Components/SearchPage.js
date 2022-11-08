@@ -13,7 +13,7 @@ function SearchPage(props) {
       <Container>
         <Search />
       </Container>
-      <Results />
+      <Results page={"searchpage"} />
     </div>
   );
 }

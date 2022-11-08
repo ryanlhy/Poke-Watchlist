@@ -35,15 +35,37 @@ function Results(props) {
     if (props.search === "") {
       console.log("did not call api from search");
     } else {
-      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=10&api_key=${key}`;
+      let pageSize = 10;
+      if (props.page === "searchpage") {
+        pageSize = 30;
+      }
+      apiFunc(pageSize);
+      //   const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
+      //   const fetchPromise = fetch(urlSrc);
+      //   fetchPromise
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       setPokemonArray(data.data);
+      //     })
+      //     .catch((err) => {
+      //       // some code here
+      //     });
+      // }
+      // if dont return any pokemon, enter set name?
+    }
+
+    const apiFunc = (pageSize) => {
+      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
       const fetchPromise = fetch(urlSrc);
       fetchPromise
         .then((response) => response.json())
         .then((data) => {
           setPokemonArray(data.data);
+        })
+        .catch((err) => {
+          // some code here
         });
-    }
-    // if dont return any pokemon, enter set name?
+    };
   };
 
   useEffect(() => {

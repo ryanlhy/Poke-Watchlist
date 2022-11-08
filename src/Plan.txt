@@ -17,3 +17,7 @@ do a nice home page design
 on submisssion 'okay' button should lead to home page, and clear the cart/ can just refresh
 create a footer
 add a shadow at the back of cards
+add an alert
+highlight the tab that visitor is in
+
+create usestate at home to add cart number
