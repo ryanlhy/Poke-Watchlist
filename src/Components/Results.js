@@ -22,13 +22,14 @@ function Results(props) {
     // const json = await res.json();
     // await setPokemonArray(json.data[0].images.small);
     // return json.data[0].images.small;
-    const fetchPromise = fetch(urlSrc);
-    //promise chaining
-    fetchPromise
-      .then((response) => response.json())
-      .then((data) => {
-        setPokemonArray(data.data);
-      });
+
+    // const fetchPromise = fetch(urlSrc);
+    // fetchPromise
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setPokemonArray(data.data);
+    //   });
+    apiFunc(urlSrc);
   };
 
   const callApiSearch = async () => {
@@ -58,6 +59,7 @@ function Results(props) {
   const apiFunc = (urlSrc) => {
     // const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
     const fetchPromise = fetch(urlSrc);
+    //promise chaining
     fetchPromise
       .then((response) => response.json())
       .then((data) => {
