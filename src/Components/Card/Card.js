@@ -17,13 +17,13 @@ function CardListing(props) {
   // const image = useSelector((state) => state.img);
   const convertSgd = 1.41; // can use an api
   return (
-    <Card className="flex-fill" border="primary" style={{ width: "14rem" }}>
+    <Card
+      className="flex-fill p-2 m-2"
+      // border="secondary"
+      style={{ width: "14rem" }}
+    >
       <div className="card-effects">
-        <Card.Img
-          className="card-img-effects"
-          variant="top"
-          src={props.image}
-        />
+        <Card.Img variant="top" src={props.image} />
       </div>
       <Card.Body>
         <Card.Title>
@@ -34,8 +34,6 @@ function CardListing(props) {
           {/* SGD ${Math.round(parseInt(props.prices) * convertSgd)} */}
           SGD ${props.pricesSgd}
         </Card.Title>
-
-        <Card.Text></Card.Text>
       </Card.Body>
       {toggleButtonAdd === false ? (
         <Button

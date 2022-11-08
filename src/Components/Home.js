@@ -12,7 +12,7 @@ import Footer from "./Footer";
 
 function Home() {
   return (
-    <div>
+    <div className="bg-light">
       <h1>Pokemon TCG Watchlist</h1>
       <Container>
         <Search />

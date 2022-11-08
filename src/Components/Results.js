@@ -58,25 +58,24 @@ function Results(props) {
   }, [props.search]);
 
   return (
-    <Container>
-      <div className="rowC">
-        {pokemonArray.map((arr, i) => {
-          return (
-            <CardListing
-              propsObj={arr}
-              name={arr.name}
-              image={arr.images.small}
-              number={arr.number}
-              printedTotal={arr.set.printedTotal}
-              setName={arr.set.name}
-              pricesSgd={Math.round(
-                parseInt(arr.cardmarket.prices.avg30) * convertSgd
-              )}
-              key={i}
-            />
-          );
-        })}
-      </div>
+    <Container className="rowC bg-light">
+      {pokemonArray.map((arr, i) => {
+        return (
+          <CardListing
+            className="p-5"
+            propsObj={arr}
+            name={arr.name}
+            image={arr.images.small}
+            number={arr.number}
+            printedTotal={arr.set.printedTotal}
+            setName={arr.set.name}
+            pricesSgd={Math.round(
+              parseInt(arr.cardmarket.prices.avg30) * convertSgd
+            )}
+            key={i}
+          />
+        );
+      })}
       <h1>Load more...button here</h1>
     </Container>
   );

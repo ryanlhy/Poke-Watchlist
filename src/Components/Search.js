@@ -13,7 +13,7 @@ function Search(props) {
     setPlaceholderSearch(props.search);
   }, [props.search]);
   return (
-    <Form className="d-flex">
+    <Form className="d-flex m-5">
       <Form.Control
         type="search"
         placeholder={placeholderSearch}
@@ -22,7 +22,9 @@ function Search(props) {
         onChange={(e) => props.handleChange(e)}
       />
       <Link to="/search">
-        <Button variant="outline-success">Search</Button>
+        <Button variant="outline-success" type="submit">
+          Search
+        </Button>
       </Link>
     </Form>
   );
