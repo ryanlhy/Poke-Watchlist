@@ -39,33 +39,33 @@ function Results(props) {
       if (props.page === "searchpage") {
         pageSize = 30;
       }
-      apiFunc(pageSize);
-      //   const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
-      //   const fetchPromise = fetch(urlSrc);
-      //   fetchPromise
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       setPokemonArray(data.data);
-      //     })
-      //     .catch((err) => {
-      //       // some code here
-      //     });
-      // }
-      // if dont return any pokemon, enter set name?
+      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
+      // const fetchPromise = fetch(urlSrc);
+      // fetchPromise
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     setPokemonArray(data.data);
+      //   })
+      //   .catch((err) => {
+      //     // some code here
+      //   });
+      apiFunc(urlSrc);
     }
 
-    const apiFunc = (pageSize) => {
-      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
-      const fetchPromise = fetch(urlSrc);
-      fetchPromise
-        .then((response) => response.json())
-        .then((data) => {
-          setPokemonArray(data.data);
-        })
-        .catch((err) => {
-          // some code here
-        });
-    };
+    // if dont return any pokemon, enter set name?
+  };
+
+  const apiFunc = (urlSrc) => {
+    // const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
+    const fetchPromise = fetch(urlSrc);
+    fetchPromise
+      .then((response) => response.json())
+      .then((data) => {
+        setPokemonArray(data.data);
+      })
+      .catch((err) => {
+        // some code here
+      });
   };
 
   useEffect(() => {
