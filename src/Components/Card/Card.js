@@ -46,7 +46,7 @@ function CardListing(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.handleNetPriceIncrease(props.pricesSgd); // update cartCount in results.js
+              props.handleNetValueIncrease(props.pricesSgd); // update cartCount in results.js
               props.handleWatchlist(props);
               setToggleButtonAdd(true);
               console.log(props.watchList);
@@ -60,7 +60,7 @@ function CardListing(props) {
           variant="secondary"
           // handleDelete takes in an index
           onClick={() => {
-            props.handleNetPriceDecrease(props.pricesSgd); // update cartCount in results.js
+            props.handleNetValueDecrease(props.pricesSgd); // update cartCount in results.js
             props.handleDelete(
               props.watchList.findIndex((watchList) => {
                 // find by id of the card

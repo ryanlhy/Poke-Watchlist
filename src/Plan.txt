@@ -11,6 +11,7 @@ cards
 Title
 search bar 
 onclick pokemon cards, overlay see bigger image
+add reset netprice
 
 find out how to adjust size of the image or elements
 put watchlist to the right of contaner

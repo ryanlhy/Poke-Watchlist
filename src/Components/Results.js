@@ -86,17 +86,17 @@ function Results(props) {
     return 0;
   };
 
-  const handleNetPriceIncrease = (pricesSgd) => {
+  const handleNetValueIncrease = (pricesSgd) => {
     setCartCount(cartCount + pricesSgd);
   };
 
-  const handleNetPriceDecrease = (pricesSgd) => {
+  const handleNetValueDecrease = (pricesSgd) => {
     setCartCount(cartCount - pricesSgd);
   };
 
   return (
     <div>
-      <h1>Total: ${cartCount}</h1>
+      <h1>Value: ${cartCount}</h1>
       <Container className="rowC bg-light">
         {pokemonArray.map((arr, i) => {
           return (
@@ -112,8 +112,8 @@ function Results(props) {
                 parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
               )}
               key={i}
-              handleNetPriceIncrease={handleNetPriceIncrease}
-              handleNetPriceDecrease={handleNetPriceDecrease}
+              handleNetValueIncrease={handleNetValueIncrease}
+              handleNetValueDecrease={handleNetValueDecrease}
             />
           );
         })}
