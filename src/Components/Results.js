@@ -15,20 +15,12 @@ function Results(props) {
   const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
   // const pageSize = 10;
   // let pokeName = "charizard";
-
   const callTenCharizard = async () => {
     const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:charizard&pageSize=10&api_key=${key}`;
     // const res = await fetch(urlSrc);
     // const json = await res.json();
     // await setPokemonArray(json.data[0].images.small);
     // return json.data[0].images.small;
-
-    // const fetchPromise = fetch(urlSrc);
-    // fetchPromise
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setPokemonArray(data.data);
-    //   });
     apiFunc(urlSrc);
   };
 
@@ -38,21 +30,11 @@ function Results(props) {
     } else {
       let pageSize = 10;
       if (props.page === "searchpage") {
-        pageSize = 30;
+        pageSize = 50;
       }
       const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
-      // const fetchPromise = fetch(urlSrc);
-      // fetchPromise
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     setPokemonArray(data.data);
-      //   })
-      //   .catch((err) => {
-      //     // some code here
-      //   });
       apiFunc(urlSrc);
     }
-
     // if dont return any pokemon, enter set name?
   };
 
@@ -66,7 +48,7 @@ function Results(props) {
         setPokemonArray(data.data);
       })
       .catch((err) => {
-        // some code here
+        // catch error : cannot read propertie of undefined reading 'prices'
       });
   };
 
@@ -81,6 +63,27 @@ function Results(props) {
     }
   }, [props.search]);
 
+  const derivePriceFromUnstructuredData = (arr) => {
+    let price = 0;
+
+    // Take the usual data point
+    if (arr.cardmarket) {
+      price = arr.cardmarket.prices.avg30;
+      return;
+    }
+
+    // Look for tcgplayer.prices.low
+    price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
+    if (price > 0) return; // return if value is set
+
+    price = arr.tcgplayer.prices.holofoil
+      ? arr.tcgplayer.prices.holofoil.low
+      : 0;
+    if (price > 0) return;
+
+    return price;
+  };
+
   return (
     <Container className="rowC bg-light">
       {pokemonArray.map((arr, i) => {
@@ -94,7 +97,7 @@ function Results(props) {
             printedTotal={arr.set.printedTotal}
             setName={arr.set.name}
             pricesSgd={Math.round(
-              parseInt(arr.cardmarket.prices.avg30) * convertSgd
+              parseInt(derivePriceFromUnstructuredData) * convertSgd
             )}
             key={i}
           />
