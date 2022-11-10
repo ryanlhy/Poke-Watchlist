@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 // useselector gets a small slice of the state object
 function CardListing(props) {
-  const { name } = props;
+  // const { name } = props;
   const [toggleButtonAdd, setToggleButtonAdd] = useState(false);
 
   // console.log(props.propsObj);
@@ -35,6 +35,7 @@ function CardListing(props) {
         <Button
           variant="primary"
           onClick={() => {
+            props.handleCartIncrease(); // update cartCount in results.js
             props.handleWatchlist(props);
             setToggleButtonAdd(true);
             console.log(props.watchList);
@@ -47,6 +48,7 @@ function CardListing(props) {
           variant="secondary"
           // handleDelete takes in an index
           onClick={() => {
+            props.handleCartDecrease(); // update cartCount in results.js
             props.handleDelete(
               props.watchList.findIndex((watchList) => {
                 // find by id of the card

@@ -23,3 +23,5 @@ highlight the tab that visitor is in
 create usestate at home to add cart number
 add a catch to api -- 'pikachu' does not have price
 need to have added when toggling home and watchlist page
+
+cards - make the transform go back slower

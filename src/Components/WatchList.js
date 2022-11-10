@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import WatchListCards from "./WatchListCards";
 import { Container } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Alert";
 
 function WatchList(props) {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -19,9 +19,9 @@ function WatchList(props) {
         <WatchListCards />
         {props.watchList.length === 0 ? (
           <div>
-            <h2>Nothing Here Yet</h2>
+            <Alert>Nothing here yet, add more cards! </Alert>
             <Link to="/">
-              <Button variant="primary">Find More Cards</Button>
+              <Button variant="primary">Add Cards</Button>
             </Link>{" "}
           </div>
         ) : (

@@ -3,10 +3,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
+import Alert from "react-bootstrap/Alert";
 
 function Results(props) {
   const convertSgd = 1.41;
   const [pokemonArray, setPokemonArray] = useState([]);
+  const [cartCount, setCartCount] = useState(0); // create another cart to meet project requirements in GA
 
   const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
   // const pageSize = 10;
@@ -85,27 +87,41 @@ function Results(props) {
     return price;
   };
 
+  const handleCartIncrease = () => {
+    setCartCount(cartCount + 1);
+  };
+
+  const handleCartDecrease = () => {
+    setCartCount(cartCount - 1);
+  };
+
   return (
-    <Container className="rowC bg-light">
-      {pokemonArray.map((arr, i) => {
-        return (
-          <CardListing
-            className="p-5"
-            propsObj={arr}
-            name={arr.name}
-            image={arr.images.small}
-            number={arr.number}
-            printedTotal={arr.set.printedTotal}
-            setName={arr.set.name}
-            pricesSgd={Math.round(
-              parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
-            )}
-            key={i}
-          />
-        );
-      })}
-      <h1>Load more...button here</h1>
-    </Container>
+    <div>
+      <h1>Cart: {cartCount}</h1>
+      <Container className="rowC bg-light">
+        {pokemonArray.map((arr, i) => {
+          return (
+            <CardListing
+              className="p-5"
+              propsObj={arr}
+              name={arr.name}
+              image={arr.images.small}
+              number={arr.number}
+              printedTotal={arr.set.printedTotal}
+              setName={arr.set.name}
+              pricesSgd={Math.round(
+                parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
+              )}
+              key={i}
+              handleCartIncrease={handleCartIncrease}
+              handleCartDecrease={handleCartDecrease}
+            />
+          );
+        })}
+        <h1>Load more...button here</h1>
+      </Container>
+      <Alert>hi</Alert>
+    </div>
   );
 }
 
