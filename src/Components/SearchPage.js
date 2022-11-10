@@ -1,8 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
-import CardListing from "./Card/Card";
 import Results from "./Results";
 import Search from "./Search";
 

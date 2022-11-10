@@ -1,12 +1,8 @@
 import CardListing from "./Card/Card";
 import React from "react";
 import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Stack from "react-bootstrap/Stack";
 
 function Results(props) {
   const convertSgd = 1.41;
@@ -73,6 +69,7 @@ function Results(props) {
     }
     console.log("unstruc");
 
+    //tcgplayer has either normal or holofoil
     // Look for tcgplayer.prices.low
     price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
     if (price > 0) return; // return if value is set
