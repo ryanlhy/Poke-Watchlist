@@ -65,20 +65,24 @@ function Results(props) {
 
   const derivePriceFromUnstructuredData = (arr) => {
     let price = 0;
-
+    // console.log(arr.cardmarket.prices.avg30);
     // Take the usual data point
     if (arr.cardmarket) {
       price = arr.cardmarket.prices.avg30;
-      return;
+      return price;
     }
+    console.log("unstruc");
 
     // Look for tcgplayer.prices.low
     price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
     if (price > 0) return; // return if value is set
 
     price = arr.tcgplayer.prices.holofoil
-      ? arr.tcgplayer.prices.holofoil.low
+      ? arr.tcgplayer.prices.holofoil.mid
       : 0;
+    if (price > 0) return;
+
+    price = arr.tcgplayer.prices.normal ? arr.tcgplayer.prices.normal.mid : 0;
     if (price > 0) return;
 
     return price;
@@ -97,7 +101,7 @@ function Results(props) {
             printedTotal={arr.set.printedTotal}
             setName={arr.set.name}
             pricesSgd={Math.round(
-              parseInt(derivePriceFromUnstructuredData) * convertSgd
+              parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
             )}
             key={i}
           />
