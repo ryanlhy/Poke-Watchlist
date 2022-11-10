@@ -69,35 +69,34 @@ function Results(props) {
       price = arr.cardmarket.prices.avg30;
       return price;
     }
-    console.log("unstruc");
 
     //tcgplayer has either normal or holofoil
     // Look for tcgplayer.prices.low
     price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
-    if (price > 0) return; // return if value is set
+    if (price > 0) return price; // return if value is set
 
     price = arr.tcgplayer.prices.holofoil
       ? arr.tcgplayer.prices.holofoil.mid
       : 0;
-    if (price > 0) return;
+    if (price > 0) return price;
 
     price = arr.tcgplayer.prices.normal ? arr.tcgplayer.prices.normal.mid : 0;
-    if (price > 0) return;
+    if (price > 0) return price;
 
-    return price;
+    return 0;
   };
 
-  const handleCartIncrease = () => {
-    setCartCount(cartCount + 1);
+  const handleNetPriceIncrease = (pricesSgd) => {
+    setCartCount(cartCount + pricesSgd);
   };
 
-  const handleCartDecrease = () => {
-    setCartCount(cartCount - 1);
+  const handleNetPriceDecrease = (pricesSgd) => {
+    setCartCount(cartCount - pricesSgd);
   };
 
   return (
     <div>
-      <h1>Cart: {cartCount}</h1>
+      <h1>Total: ${cartCount}</h1>
       <Container className="rowC bg-light">
         {pokemonArray.map((arr, i) => {
           return (
@@ -113,8 +112,8 @@ function Results(props) {
                 parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
               )}
               key={i}
-              handleCartIncrease={handleCartIncrease}
-              handleCartDecrease={handleCartDecrease}
+              handleNetPriceIncrease={handleNetPriceIncrease}
+              handleNetPriceDecrease={handleNetPriceDecrease}
             />
           );
         })}

@@ -10,6 +10,7 @@ add button
 cards
 Title
 search bar 
+onclick pokemon cards, overlay see bigger image
 
 find out how to adjust size of the image or elements
 put watchlist to the right of contaner
@@ -23,5 +24,6 @@ highlight the tab that visitor is in
 create usestate at home to add cart number
 add a catch to api -- 'pikachu' does not have price
 need to have added when toggling home and watchlist page
+change cart to value added?
 
-cards - make the transform go back slower
+cards - make the transform go back slower 

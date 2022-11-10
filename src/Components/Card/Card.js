@@ -2,16 +2,22 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 // useselector gets a small slice of the state object
 function CardListing(props) {
   // const { name } = props;
   const [toggleButtonAdd, setToggleButtonAdd] = useState(false);
 
-  // console.log(props.propsObj);
-  // not sure how to pass data from state to another component
-  // const image = useSelector((state) => state.img);
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Simple tooltip
+    </Tooltip>
+  );
+
   const convertSgd = 1.41; // can use an api
+
   return (
     <Card
       className="flex-fill p-2 m-2"
@@ -32,23 +38,29 @@ function CardListing(props) {
         </Card.Title>
       </Card.Body>
       {toggleButtonAdd === false ? (
-        <Button
-          variant="primary"
-          onClick={() => {
-            props.handleCartIncrease(); // update cartCount in results.js
-            props.handleWatchlist(props);
-            setToggleButtonAdd(true);
-            console.log(props.watchList);
-          }}
+        <OverlayTrigger
+          placement="right"
+          delay={{ show: 250, hide: 400 }}
+          overlay={renderTooltip}
         >
-          Add
-        </Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              props.handleNetPriceIncrease(props.pricesSgd); // update cartCount in results.js
+              props.handleWatchlist(props);
+              setToggleButtonAdd(true);
+              console.log(props.watchList);
+            }}
+          >
+            Add
+          </Button>
+        </OverlayTrigger>
       ) : (
         <Button
           variant="secondary"
           // handleDelete takes in an index
           onClick={() => {
-            props.handleCartDecrease(); // update cartCount in results.js
+            props.handleNetPriceDecrease(props.pricesSgd); // update cartCount in results.js
             props.handleDelete(
               props.watchList.findIndex((watchList) => {
                 // find by id of the card
