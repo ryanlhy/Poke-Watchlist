@@ -66,31 +66,6 @@ function Results(props) {
     }
   }, [props.search, props.pageNum]);
 
-  // const derivePriceFromUnstructuredData = (arr) => {
-  //   let price = 0;
-  //   // console.log(arr.cardmarket.prices.avg30);
-  //   // Take the usual data point
-  //   if (arr.cardmarket) {
-  //     price = arr.cardmarket.prices.avg30;
-  //     return price;
-  //   }
-
-  //   //tcgplayer has either normal or holofoil
-  //   // Look for tcgplayer.prices.low
-  //   price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
-  //   if (price > 0) return price; // return if value is set
-
-  //   price = arr.tcgplayer.prices.holofoil
-  //     ? arr.tcgplayer.prices.holofoil.mid
-  //     : 0;
-  //   if (price > 0) return price;
-
-  //   price = arr.tcgplayer.prices.normal ? arr.tcgplayer.prices.normal.mid : 0;
-  //   if (price > 0) return price;
-
-  //   return 0;
-  // };
-
   const handleNetValueIncrease = (pricesSgd) => {
     setCartCount(cartCount + pricesSgd);
   };
@@ -99,6 +74,26 @@ function Results(props) {
     setCartCount(cartCount - pricesSgd);
   };
 
+  const mapPokemonArray = pokemonArray.map((arr, i) => {
+    return (
+      <CardListing
+        className="p-5"
+        propsObj={arr}
+        name={arr.name}
+        image={arr.images.small}
+        number={arr.number}
+        printedTotal={arr.set.printedTotal}
+        setName={arr.set.name}
+        pricesSgd={Math.round(
+          parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
+        )}
+        key={i}
+        handleNetValueIncrease={handleNetValueIncrease}
+        handleNetValueDecrease={handleNetValueDecrease}
+      />
+    );
+  });
+
   return (
     <div className="h-100">
       <Container className="float-right">
@@ -106,27 +101,7 @@ function Results(props) {
           <Badge bg="secondary">Value: ${cartCount}</Badge>
         </h1>
       </Container>
-      <Container className="rowC bg-light">
-        {pokemonArray.map((arr, i) => {
-          return (
-            <CardListing
-              className="p-5"
-              propsObj={arr}
-              name={arr.name}
-              image={arr.images.small}
-              number={arr.number}
-              printedTotal={arr.set.printedTotal}
-              setName={arr.set.name}
-              pricesSgd={Math.round(
-                parseInt(derivePriceFromUnstructuredData(arr)) * convertSgd
-              )}
-              key={i}
-              handleNetValueIncrease={handleNetValueIncrease}
-              handleNetValueDecrease={handleNetValueDecrease}
-            />
-          );
-        })}
-      </Container>
+      <Container className="rowC bg-light">{mapPokemonArray}</Container>
       {pokemonArray !== [] ? (
         // <Link to="/search">
         <Button variant="primary" type="submit" onClick={props.handlePageNum}>

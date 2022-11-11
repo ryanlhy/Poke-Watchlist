@@ -1,4 +1,3 @@
-import React from "react";
 const derivePriceFromUnstructuredData = (arr) => {
   let price = 0;
   // console.log(arr.cardmarket.prices.avg30);
