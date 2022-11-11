@@ -96,11 +96,16 @@ function Results(props) {
       />
     );
   });
-  const cardPlaceholderArr = [0, 0, 0, 0, 0];
-  const cardsPlaceholder = cardPlaceholderArr.map(() => {
+  const cardPlaceholderArr = [0, 0, 0, 0, 0, , 0, 0, 0, 0, 0];
+  const cardsPlaceholder = cardPlaceholderArr.map((e, i) => {
     return (
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="./placeholder1.png" height={"300px"} />
+      <Card className="flex-fill p-2 m-2" style={{ width: "14rem" }} key={i}>
+        <Card.Img
+          variant="top"
+          src="https://preview.redd.it/hugjub0fziw61.jpg?width=640&crop=smart&auto=webp&s=ea0ef094a2b3c6a16931978da63e8288bcb0be64"
+          alt="placeholder"
+          height={"330px"}
+        />
         <Card.Body>
           <Placeholder as={Card.Title} animation="glow">
             <Placeholder xs={6} />
@@ -128,15 +133,13 @@ function Results(props) {
         {/* {cardsPlaceholder} */}
         {mapPokemonArray}
       </Container>
-      {pokemonArray !== [] ? (
-        // <Link to="/search">
+      {/* {pokemonArray !== [] ? (
         <Button variant="primary" type="submit" onClick={props.handlePageNum}>
           Search More
         </Button>
       ) : (
-        // </Link>
         <h1></h1>
-      )}
+      )} */}
       {/* <Alert>hi</Alert> */}
     </div>
   );
