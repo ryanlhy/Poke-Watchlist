@@ -1,9 +1,13 @@
 import CardListing from "./Card/Card";
 import React from "react";
+import derivePriceFromUnstructuredData from "../deriveUnstructureData";
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { connect } from "react-redux";
 import Alert from "react-bootstrap/Alert";
+import Badge from "react-bootstrap/Badge";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function Results(props) {
   const convertSgd = 1.41;
@@ -26,11 +30,12 @@ function Results(props) {
     if (props.search === "") {
       console.log("did not call api from search");
     } else {
+      // reset at every search query
       let pageSize = 10;
       if (props.page === "searchpage") {
         pageSize = 50;
       }
-      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&api_key=${key}`;
+      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&${props.pageNum}&api_key=${key}`;
       apiFunc(urlSrc);
     }
     // if dont return any pokemon, enter set name?
@@ -59,32 +64,32 @@ function Results(props) {
         callApiSearch();
       }
     }
-  }, [props.search]);
+  }, [props.search, props.pageNum]);
 
-  const derivePriceFromUnstructuredData = (arr) => {
-    let price = 0;
-    // console.log(arr.cardmarket.prices.avg30);
-    // Take the usual data point
-    if (arr.cardmarket) {
-      price = arr.cardmarket.prices.avg30;
-      return price;
-    }
+  // const derivePriceFromUnstructuredData = (arr) => {
+  //   let price = 0;
+  //   // console.log(arr.cardmarket.prices.avg30);
+  //   // Take the usual data point
+  //   if (arr.cardmarket) {
+  //     price = arr.cardmarket.prices.avg30;
+  //     return price;
+  //   }
 
-    //tcgplayer has either normal or holofoil
-    // Look for tcgplayer.prices.low
-    price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
-    if (price > 0) return price; // return if value is set
+  //   //tcgplayer has either normal or holofoil
+  //   // Look for tcgplayer.prices.low
+  //   price = arr.tcgplayer.prices.low ? arr.tcgplayer.prices.low : 0;
+  //   if (price > 0) return price; // return if value is set
 
-    price = arr.tcgplayer.prices.holofoil
-      ? arr.tcgplayer.prices.holofoil.mid
-      : 0;
-    if (price > 0) return price;
+  //   price = arr.tcgplayer.prices.holofoil
+  //     ? arr.tcgplayer.prices.holofoil.mid
+  //     : 0;
+  //   if (price > 0) return price;
 
-    price = arr.tcgplayer.prices.normal ? arr.tcgplayer.prices.normal.mid : 0;
-    if (price > 0) return price;
+  //   price = arr.tcgplayer.prices.normal ? arr.tcgplayer.prices.normal.mid : 0;
+  //   if (price > 0) return price;
 
-    return 0;
-  };
+  //   return 0;
+  // };
 
   const handleNetValueIncrease = (pricesSgd) => {
     setCartCount(cartCount + pricesSgd);
@@ -95,8 +100,12 @@ function Results(props) {
   };
 
   return (
-    <div>
-      <h1>Value: ${cartCount}</h1>
+    <div className="h-100">
+      <Container className="float-right">
+        <h1>
+          <Badge bg="secondary">Value: ${cartCount}</Badge>
+        </h1>
+      </Container>
       <Container className="rowC bg-light">
         {pokemonArray.map((arr, i) => {
           return (
@@ -117,8 +126,16 @@ function Results(props) {
             />
           );
         })}
-        <h1>Load more...button here</h1>
       </Container>
+      {pokemonArray !== [] ? (
+        // <Link to="/search">
+        <Button variant="primary" type="submit" onClick={props.handlePageNum}>
+          Search More
+        </Button>
+      ) : (
+        // </Link>
+        <h1></h1>
+      )}
       <Alert>hi</Alert>
     </div>
   );
@@ -128,6 +145,7 @@ const mapStateToProps = (state) => {
   return {
     search: state.search,
     searchResults: state.searchResults, // not needed anymore?
+    pageNum: state.pageNum,
   };
 };
 
@@ -135,6 +153,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleSearchPoke: (searchArr) =>
       dispatch({ type: "SEARCH/RESULTS", value: searchArr }),
+    handlePageNum: () => dispatch({ type: "PAGENUMBER" }),
   };
 };
 

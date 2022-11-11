@@ -7,6 +7,7 @@ const initialState = {
   watchList: [],
   search: "",
   searchResults: [],
+  pageNum: 1,
 }; //multiplecards here
 
 const counterReducer = (state = initialState, action) => {
@@ -65,12 +66,19 @@ const counterReducer = (state = initialState, action) => {
       return {
         ...state,
         search: action.value,
+        pageNum: 1, // reset pageNum to 1 at every render
       };
     case "SEARCH/RESULTS":
       // console.log(action.value);
       return {
         ...state,
         searchResults: action.value,
+      };
+    case "PAGENUMBER":
+      console.log(state.pageNum);
+      return {
+        ...state,
+        pageNum: state.pageNum + 1,
       };
     default:
       return state;

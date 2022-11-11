@@ -12,7 +12,7 @@ function CardListing(props) {
 
   const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
-      Simple tooltip
+      Add to Watchlist
     </Tooltip>
   );
 
