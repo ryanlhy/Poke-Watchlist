@@ -8,10 +8,13 @@ function WatchListCards(props) {
     <div className="rowC">
       {props.watchList.map((arr, i) => {
         return (
-          <Card key={i} style={{ width: "18rem" }}>
+          <Card className="p-2 m-2" key={i} style={{ width: "14rem" }}>
             <Card.Img variant="top" src={arr.image} />
             <Card.Body>
-              <Card.Title>{arr.name}</Card.Title>
+              <Card.Title>
+                {arr.name} {arr.setName} {arr.number}/{arr.printedTotal}
+              </Card.Title>
+              <Card.Title>SGD ${arr.pricesSgd}</Card.Title>
               <Card.Text></Card.Text>
               <Button
                 variant="primary"

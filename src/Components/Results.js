@@ -8,11 +8,13 @@ import Alert from "react-bootstrap/Alert";
 import Badge from "react-bootstrap/Badge";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Placeholder from "react-bootstrap/Placeholder";
+import Card from "react-bootstrap/Card";
 
 function Results(props) {
   const convertSgd = 1.41;
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [cartCount, setCartCount] = useState(0); // create another cart to meet project requirements in GA
+  const [cartValue, setCartValue] = useState(0); // create another cart to meet project requirements in GA
 
   const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
   // const pageSize = 10;
@@ -58,6 +60,7 @@ function Results(props) {
   useEffect(() => {
     // check if empty array, dont procees with useEffect
     if (pokemonArray !== []) {
+      console.log(pokemonArray);
       if (props.search === "") {
         callTenCharizard();
       } else {
@@ -67,11 +70,11 @@ function Results(props) {
   }, [props.search, props.pageNum]);
 
   const handleNetValueIncrease = (pricesSgd) => {
-    setCartCount(cartCount + pricesSgd);
+    setCartValue(cartValue + pricesSgd);
   };
 
   const handleNetValueDecrease = (pricesSgd) => {
-    setCartCount(cartCount - pricesSgd);
+    setCartValue(cartValue - pricesSgd);
   };
 
   const mapPokemonArray = pokemonArray.map((arr, i) => {
@@ -93,15 +96,37 @@ function Results(props) {
       />
     );
   });
+  const cardPlaceholderArr = [0, 0, 0, 0, 0];
+  const cardsPlaceholder = cardPlaceholderArr.map(() => {
+    return (
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src="../placeholder1.png" />
+        <Card.Body>
+          <Placeholder as={Card.Title} animation="glow">
+            <Placeholder xs={6} />
+          </Placeholder>
+          <Placeholder as={Card.Text} animation="glow">
+            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{" "}
+            <Placeholder xs={6} /> <Placeholder xs={8} />
+          </Placeholder>
+          <Placeholder.Button variant="primary" xs={6} />
+        </Card.Body>
+      </Card>
+    );
+  });
 
   return (
     <div className="h-100">
       <Container className="float-right">
         <h1>
-          <Badge bg="secondary">Value: ${cartCount}</Badge>
+          <Badge bg="secondary">Value: ${cartValue}</Badge>
         </h1>
       </Container>
-      <Container className="rowC bg-light">{mapPokemonArray}</Container>
+      <Container className="rowC bg-light">
+        {" "}
+        {pokemonArray.length === 0 ? cardsPlaceholder : <></>}
+        {mapPokemonArray}
+      </Container>
       {pokemonArray !== [] ? (
         // <Link to="/search">
         <Button variant="primary" type="submit" onClick={props.handlePageNum}>
@@ -111,7 +136,7 @@ function Results(props) {
         // </Link>
         <h1></h1>
       )}
-      <Alert>hi</Alert>
+      {/* <Alert>hi</Alert> */}
     </div>
   );
 }

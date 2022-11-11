@@ -68,7 +68,6 @@ function CardListing(props) {
               })
             );
             setToggleButtonAdd(false);
-            console.log(props.watchList);
           }}
         >
           Added
