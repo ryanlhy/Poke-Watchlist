@@ -1,4 +1,4 @@
-import CardListing from "./Card/Card";
+import CardListing from "./Card/CardListing";
 import React from "react";
 import derivePriceFromUnstructuredData from "../deriveUnstructureData";
 import { useEffect, useState } from "react";
@@ -100,7 +100,7 @@ function Results(props) {
   const cardsPlaceholder = cardPlaceholderArr.map(() => {
     return (
       <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="../placeholder1.png" />
+        <Card.Img variant="top" src="./placeholder1.png" height={"300px"} />
         <Card.Body>
           <Placeholder as={Card.Title} animation="glow">
             <Placeholder xs={6} />
@@ -125,6 +125,7 @@ function Results(props) {
       <Container className="rowC bg-light">
         {" "}
         {pokemonArray.length === 0 ? cardsPlaceholder : <></>}
+        {/* {cardsPlaceholder} */}
         {mapPokemonArray}
       </Container>
       {pokemonArray !== [] ? (
