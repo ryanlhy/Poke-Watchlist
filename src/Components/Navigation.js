@@ -16,7 +16,7 @@ function Navigation(props) {
             <Nav.Link as={Link} to={"/"}>
               Home
             </Nav.Link>
-            <Nav.Link href="/signup">Sign Up</Nav.Link>
+            {/* <Nav.Link href="/signup">Sign Up</Nav.Link> */}
             <Nav.Link as={Link} to={"/search"}>
               <Nav>Search</Nav>
             </Nav.Link>
