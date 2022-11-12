@@ -21,9 +21,9 @@ The intention is to start an automated process that source for cards for sale in
 <li> Returns an array of Cards components to DOM according to number of elements recieved from DOM
 <li> Sends input values to redux store
 
-## Card.js
+## CardListing.js
 <li> Displays values from pokemontcg.io API
-<li> Listen for click on 'add' button and add to Watch List Array
+<li> Listen for click on 'add' button and add card object to Watch List Array
 <li> Sends action to redux store
   
 
