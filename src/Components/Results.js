@@ -53,7 +53,7 @@ function Results(props) {
         setPokemonArray(data.data);
       })
       .catch((err) => {
-        // catch error : cannot read propertie of undefined reading 'prices'
+        // catch error :
       });
   };
 

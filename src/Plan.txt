@@ -28,3 +28,5 @@ need to have added when toggling home and watchlist page
 change cart to value added?
 
 cards - make the transform go back slower 
+
+footer - use flex grow and view height so that footer have a min height

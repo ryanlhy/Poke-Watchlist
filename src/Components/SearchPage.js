@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import Results from "./Results";
-import Search from "./Search";
+import Search from "./SearchBar";
 
 function SearchPage(props) {
   return (

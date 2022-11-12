@@ -4,7 +4,7 @@
 import React from "react";
 
 import Results from "./Results";
-import Search from "./Search";
+import Search from "./SearchBar";
 import { Container } from "react-bootstrap";
 import Footer from "./Footer";
 
