@@ -18,12 +18,13 @@ The intention is to start an automated process that source for cards for sale in
   
 ## Results.js
 <li> Calls pokemontcg.io API according to input values. Initialized on load with default values
-<li> Return Cards components to DOM according to number of elements recieved from DOM
+<li> Returns an array of Cards components to DOM according to number of elements recieved from DOM
 <li> Sends input values to redux store
 
 ## Card.js
-  
-## index.js REDUX
+<li> Displays values from pokemontcg.io API
+<li> Listen for click on 'add' button and add to Watch List Array
+<li> Sends action to redux store
   
 
 
