@@ -10,13 +10,15 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Placeholder from "react-bootstrap/Placeholder";
 import Card from "react-bootstrap/Card";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 function Results(props) {
   const convertSgd = 1.41;
   const [pokemonArray, setPokemonArray] = useState([]);
   const [cartValue, setCartValue] = useState(0); // create another cart to meet project requirements in GA
 
-  const key = "4485d77b-72a5-4262-a292-e52f5be06f10";
+  const key = process.env.apiKey;
   // const pageSize = 10;
   // let pokeName = "charizard";
   const callTenCharizard = async () => {
