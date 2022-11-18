@@ -1,9 +1,9 @@
 # Pokemon Cards Watch List
 
 Pokemon Cards as a collectible item has risen in recent years, and collecters are actively looking out for cards to complete their collection. 
-This project serves as an interface for a pokemon card Watch List that allows users to add cards to their watchlist and submit it to the back-end. 
+This project serves as an interface for a pokemon card Watch List that allows users to add cards to their watchlist and submit it to the back-end. It will then start an automated process that source for cards for sale in various marketplace. 
 
-The intention is to start an automated process that source for cards for sale in various marketplace. This project mainly focuses on the front-end portion.
+This project mainly focuses on the front-end portion. View the site here: https://pokemon-watchlist-lyart.vercel.app/
 
 ![image](https://user-images.githubusercontent.com/103638962/201466984-3dbedc63-03f3-45e8-913a-0e37390fe719.png)
 
