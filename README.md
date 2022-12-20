@@ -7,6 +7,26 @@ This project mainly focuses on the front-end portion. View the site here: https:
 
 ![image](https://user-images.githubusercontent.com/103638962/201466984-3dbedc63-03f3-45e8-913a-0e37390fe719.png)
 
+## Features
+
+- Search for cards by name or set
+- View detailed information about a card, including its image, price, and set details
+- Add cards to your watchlist for easy tracking
+- View the current prices of cards in your watchlist
+
+## Development Notes
+
+- The application is built using a component-based architecture approach, with each major feature represented by a separate component.
+- Controlled forms are used to handle user input and trigger API calls.
+- The watchlist feature is implemented using local storage to persist the data between sessions.
+
+## Technologies Used
+
+- ReactJS: The front-end of the application is built using the ReactJS framework.
+- Redux: The application uses Redux for state management.
+- Bootstrap: The UI is built using the Bootstrap library for styling and responsive design.
+- API calls: The application makes API calls to retrieve card data based on user input.
+
 ## Component Tree
 ![component-tree](https://user-images.githubusercontent.com/103638962/201466814-6de0a63a-4b54-47d5-86e0-0b18ea34813e.png)
 
@@ -27,12 +47,18 @@ This project mainly focuses on the front-end portion. View the site here: https:
 <li> Sends action to redux store
   
 
+## Future Improvements
 
+- Implement authentication and user accounts to allow users to save their watchlists and access them from any device.
+- Add more detailed card information, such as rarity and condition.
+- Allow users to set price alerts and receive notifications when a watched card's price changes.
+
+We hope you enjoy using Poke Watchlist! If you have any feedback or suggestions for improvement, please don't hesitate to let us know.
 
 This project was built with:
-<li> [React](https://reactjs.org/)
-<li> [Create React App](https://github.com/facebook/create-react-app)
-<li> [React Bootstrap](https://react-bootstrap.github.io/)
-<li> [React Redux](https://react-redux.js.org/)
-<li> [Pokemontcg.io](https://docs.pokemontcg.io/)
+<li> React (https://reactjs.org/)
+<li> Create React App (https://github.com/facebook/create-react-app)
+<li> React Bootstrap (https://react-bootstrap.github.io/)
+<li> React Redux (https://react-redux.js.org/)
+<li> Pokemontcg.io (https://docs.pokemontcg.io/)
   
