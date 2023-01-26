@@ -39,7 +39,7 @@ function Results(props) {
       if (props.page === "searchpage") {
         pageSize = 50;
       }
-      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:${props.search}&pageSize=${pageSize}&${props.pageNum}&api_key=${key}`;
+      const urlSrc = `https://api.pokemontcg.io/v2/cards?q=name:"${props.search}"&pageSize=${pageSize}&${props.pageNum}&api_key=${key}`;
       apiFunc(urlSrc);
     }
     // if dont return any pokemon, enter set name?
